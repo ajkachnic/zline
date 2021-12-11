@@ -1,6 +1,34 @@
 # zline
 
+***IMPORTANT***: *please note that this is a very WIP project, and probably not
+even ready for hobby usage. the API will probably change a million times before
+it's stabilized, so **use at your own risk***
+
 A simple yet powerful line editor for Zig.
+
+## Installation
+
+Since zline is just one file (`zline.zig`), the simplest installation option is just downloading the file and putting it into your build setup.
+
+A sample `build.zig` with this approach looks like this:
+
+```zig
+const Builder = @import("std").build.Builder;
+
+pub fn build(b: *Builder) void {
+    const mode = b.standardReleaseOptions();
+
+    const lib = b.addStaticLibrary("zline", "src/main.zig");
+    lib.setBuildMode(mode);
+    lib.install();
+
+    var main_tests = b.addTest("src/main.zig");
+    main_tests.setBuildMode(mode);
+
+    const test_step = b.step("test", "Run library tests");
+    test_step.dependOn(&main_tests.step);
+}
+```
 
 ## Usage
 
@@ -8,7 +36,7 @@ After installing, getting up and running is pretty simple:
 
 ```zig
 const std = @import("std");
-const zline = @import("zline.zig"); // Or however you have this set up
+const zline = @import("zline"); // Or however you have this set up
 
 pub fn main() anyerror!void {
     var arena = std.heap.ArenaAllocator.init();
