@@ -1,3 +1,8 @@
+> 🚩 **This project is archived!** 🚩
+> 
+> *It should still work well (at least for basic use cases), but I encourage someone else to take this code and make it better*
+
+
 # zline
 
 ***IMPORTANT***: *please note that this is a very WIP project, and probably not
